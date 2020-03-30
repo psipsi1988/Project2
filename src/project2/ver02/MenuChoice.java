@@ -1,4 +1,4 @@
-package project2.ver01;
+package project2.ver02;
 
 public interface MenuChoice {
 

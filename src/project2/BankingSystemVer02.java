@@ -1,10 +1,10 @@
 package project2;
 
-import project2.ver02.Account;
+import project2.ver02.AccountManager;
 public class BankingSystemVer02 {
 
 	public static void main(String[] args) {
-		Account ac= new Account(50);
-		ac.showMenu();
+		AccountManager AM= new AccountManager(50);
+		AM.start();
 	}
 }

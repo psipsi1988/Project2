@@ -1,4 +1,4 @@
-package project2.ver02;
+package project2.ver04;
 
 public class HighCreditAccount extends Account implements CustomSpecialRate{
 
@@ -6,9 +6,9 @@ public class HighCreditAccount extends Account implements CustomSpecialRate{
 	private String creditRate;
 	private double crInterest;
 	
-	public HighCreditAccount(String aN, String na, int bal, int interest, String cr) {
+	public HighCreditAccount(String aN, String na, int bal, int ir, String cr) {
 		super(aN, na, bal);
-		this.interest = interest;
+		this.interest = ir;
 		this.creditRate = cr;
 	}
 	

@@ -1,17 +1,16 @@
-package project2.ver02;
+package project2.ver04;
 
-import java.util.HashSet;
+import java.io.Serializable;
 import java.util.Scanner;
 
 
 
-public abstract class Account {
+public abstract class Account implements Serializable{
 	//멤버변수
 	private String accNum;//계좌번호
 	private String name;//이름
 	private int balance;//잔액
 	
-	public Account() {}
 	public Account(String aN, String na, int bal) {
 	
 		accNum = aN;
@@ -28,7 +27,30 @@ public abstract class Account {
 		System.out.println("----------------");
 		System.out.println("전체 계좌정보 출력이 완료되었습니다."); 
 		return;
+		
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime*result+((accNum==null)? 0 : accNum.hashCode()); 
+		return result;
+	}
+		
+	@Override
+	public boolean equals(Object obj) {
+		Account acc = (Account) obj;
+		if(acc.accNum.equals(this.accNum)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
+	
 	
 	public String getAccNum() {
 		return accNum;

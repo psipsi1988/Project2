@@ -1,4 +1,4 @@
-package project2.ver02;
+package project2.ver04;
 
 public class NormalAccount extends Account{
 

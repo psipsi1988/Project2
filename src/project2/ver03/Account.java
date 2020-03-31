@@ -1,4 +1,4 @@
-package project2.ver02;
+package project2.ver03;
 
 import java.util.HashSet;
 import java.util.Scanner;

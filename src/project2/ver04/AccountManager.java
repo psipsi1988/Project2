@@ -15,9 +15,9 @@ public class AccountManager implements MenuChoice{
 	Scanner scan = new Scanner(System.in);
 	HashSet<Account> accArr;
 
-	public AccountManager(int num) {
+	public AccountManager() {
 		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/project2/ver4/account.obj"));
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/project2/ver04/account.obj"));
 			accArr = (HashSet<Account>) in.readObject();
 			in.close();
 		}
@@ -28,7 +28,19 @@ public class AccountManager implements MenuChoice{
 	}
 
 	public void showMenu() { 
+//		try {
+//			ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/project2/ver4/account.obj"));
+//			while(true) {
+//				Account account = (Account)in.readObject();
+//				if(account == null)break;
+//				accArr.add(account);
+//				
+//			}}
+//			catch(Exception e) {
+//			}
+			
 
+		
 		while(true) {
 			try {
 
@@ -116,15 +128,14 @@ public class AccountManager implements MenuChoice{
 				}
 			}
 			catch (MenuSelectException e) {
-				e.printStackTrace();
+				System.out.println();
 			}
 			catch (InputMismatchException e) {
-				e.printStackTrace();
+				System.out.println("입력값이 잘못되었습니다. ");
 				scan.nextLine();
 			}
 			catch(Exception e) {
 				System.out.println("알 수 없는 오류가 발생했습니다. ");
-				e.printStackTrace();
 			}
 
 

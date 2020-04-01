@@ -1,4 +1,4 @@
-package project2.ver01;
+package project2.ver05;
 
 
 
@@ -12,6 +12,7 @@ public class Account {
 		accNum = aN;
 		name = na;
 		balance = bal;
+		
 	}
 	
 	public String getAccNum() {

@@ -35,6 +35,7 @@ public class HighCreditAccount extends Account implements CustomSpecialRate{
 		super.showAccInfo();
 		System.out.println("기본 이자>" + interest+"%");
 		System.out.println("신용 등급>" + creditRate);
+		System.out.println("----------------");
 	}
 	
 	

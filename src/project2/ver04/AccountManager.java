@@ -28,22 +28,21 @@ public class AccountManager implements MenuChoice{
 	}
 
 	public void showMenu() { 
-//		try {
-//			ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/project2/ver4/account.obj"));
-//			while(true) {
-//				Account account = (Account)in.readObject();
-//				if(account == null)break;
-//				accArr.add(account);
-//				
-//			}}
-//			catch(Exception e) {
-//			}
-			
+		//		try {
+		//			ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/project2/ver4/account.obj"));
+		//			while(true) {
+		//				Account account = (Account)in.readObject();
+		//				if(account == null)break;
+		//				accArr.add(account);
+		//				
+		//			}}
+		//			catch(Exception e) {
+		//			}
 
-		
+
+
 		while(true) {
 			try {
-
 				System.out.println("-----Menu------");
 				System.out.println("1.계좌개설");
 				System.out.println("2.입금");
@@ -87,14 +86,14 @@ public class AccountManager implements MenuChoice{
 
 				case WITHDRAW: //출금
 					System.out.println("***출  금***");
-					System.out.println("계좌번호와 입금할 금액을 입력하세요. ");
+					System.out.println("계좌번호와 출금할 금액을 입력하세요. ");
 					System.out.print("계좌번호:");
 					String accN3 = scan.next();
 					System.out.print("출금액:");
 					int money3 = scan.nextInt();
 					scan.nextLine();
 					if(money3<0) {
-						System.out.println("음수의 금액을 입금할 수 없습니다.");
+						System.out.println("음수의 금액을 출금할 수 없습니다.");
 					}
 					else {
 						withdrawMoney(accN3, money3);
@@ -109,7 +108,7 @@ public class AccountManager implements MenuChoice{
 					System.out.println("프로그램을 종료합니다.");
 					try {
 						ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/project2/ver04/account.obj"));
-						
+
 						out.writeObject(accArr);
 						out.close();
 						System.exit(0);
@@ -131,7 +130,7 @@ public class AccountManager implements MenuChoice{
 				System.out.println();
 			}
 			catch (InputMismatchException e) {
-				System.out.println("입력값이 잘못되었습니다. ");
+				System.out.println("**문자 말고 메뉴에 있는 숫자를 입력해주세요**");
 				scan.nextLine();
 			}
 			catch(Exception e) {
@@ -153,55 +152,78 @@ public class AccountManager implements MenuChoice{
 			if(num==1) {
 				accArr.remove(acc);
 				accArr.add(acc);	
-				acc.showAccInfo();
+				//acc.showAccInfo();
 				System.out.println("계좌개설이 완료되었습니다.");
 			}
 		}
 		else {
 			System.out.println("계좌개설이 완료되었습니다.");
-			acc.showAccInfo();
+			//acc.showAccInfo();
 
 		}
 	}
 	public void makeAccount() { // 계좌개설을 위한 함수
-		System.out.println("***신규계좌개설***");
-		System.out.println("-----계좌선택------");
-		System.out.println("1. 보통 계좌");
-		System.out.println("2. 신용신뢰계좌");
-		System.out.println("선택 : ");
-		int num = scan.nextInt();
-		scan.nextLine();
+		try {
 
-		System.out.print("계좌번호:");
-		String aN = scan.next();
-		System.out.print("고객이름:");
-		String na = scan.next();
-		System.out.print("잔고:");
-		int bal = scan.nextInt();
-
-		if(num==1) {
-			//일반
-			System.out.printf("기본이자%% (정수형태로 입력):");
-			int ir = scan.nextInt();
+			System.out.println("***신규계좌개설***");
+			System.out.println("-----계좌선택------");
+			System.out.println("1. 보통 계좌");
+			System.out.println("2. 신용신뢰계좌");
+			System.out.println("선택 : ");
+			int num = scan.nextInt();
 			scan.nextLine();
 
-			NormalAccount normalAccount = new NormalAccount(aN, na, bal, ir);
-			accAdd(normalAccount);
-		}
-		else {
-			//신용신뢰고객
-			System.out.printf("기본이자%% (정수형태로 입력):");
-			int ir = scan.nextInt();
-			scan.nextLine();
-			System.out.println("신용등급(A, B, C등급):");
-			String cr = scan.next();
-			if(cr.equals("A") || cr.equals("B") || cr.equals("C")) {
-				HighCreditAccount highCreditAccount = new HighCreditAccount(aN, na, bal, ir, cr);
-				accAdd(highCreditAccount);
+
+
+			if(num==1) {
+				//일반
+				System.out.print("계좌번호:");
+				String aN = scan.next();
+				System.out.print("고객이름:");
+				String na = scan.next();
+				System.out.print("잔고:");
+				int bal = scan.nextInt();
+				System.out.printf("기본이자%% (정수형태로 입력):");
+				int ir = scan.nextInt();
+				scan.nextLine();
+
+				NormalAccount normalAccount = new NormalAccount(aN, na, bal, ir);
+				accAdd(normalAccount);
+			}
+			else if(num==2){
+				//신용신뢰고객
+				System.out.print("계좌번호:");
+				String aN = scan.next();
+				System.out.print("고객이름:");
+				String na = scan.next();
+				System.out.print("잔고:");
+				int bal = scan.nextInt();
+				System.out.printf("기본이자%% (정수형태로 입력):");
+				int ir = scan.nextInt();
+				scan.nextLine();
+				System.out.println("신용등급(A, B, C등급):");
+				String cr = scan.next();
+				if(cr.equals("A") || cr.equals("B") || cr.equals("C")) {
+					HighCreditAccount highCreditAccount = new HighCreditAccount(aN, na, bal, ir, cr);
+					accAdd(highCreditAccount);
+				}
+				else {
+					System.out.println("신용등급은 A, B, C 중에서 하나를 입력해야 합니다. ");
+					makeAccount();
+				}
 			}
 			else {
-				System.out.println("신용등급은 A, B, C 중에서 하나를 입력해야 합니다. ");
+				System.out.println("**숫자 1 또는 2를 입력해주세요** ");
+				makeAccount();
 			}
+		}
+		catch (InputMismatchException e) {
+			System.out.println("**문자 말고 숫자 1 또는 2를 입력해주세요**");
+			scan.nextLine();
+			makeAccount();
+		}
+		catch(Exception e) {
+			System.out.println("알 수 없는 오류가 발생했습니다. ");
 		}
 	}   
 
@@ -241,8 +263,7 @@ public class AccountManager implements MenuChoice{
 
 		}		
 		if(ex==false)
-			System.out.println("계좌가 없습니다.");
-		System.out.println();
+			System.out.println("입력하신 계좌가 없습니다 입금이 취소되었습니다");
 	}
 
 
@@ -259,8 +280,9 @@ public class AccountManager implements MenuChoice{
 					System.out.println("NO : 출금 취소");
 					String cho = scan.next();
 
-					if(cho.toUpperCase().equals("Yes")) {
+					if(cho.toUpperCase().equals("YES")) {
 						System.out.printf("총 금액 %d원이 출금되었습니다. ", acc.getBalance());
+						System.out.println("");
 						acc.setBalance(acc.getBalance()-acc.getBalance());
 					}
 					else {
@@ -286,8 +308,7 @@ public class AccountManager implements MenuChoice{
 
 		}	
 		if(ex==false)
-			System.out.println("계좌가 없습니다.");
-		System.out.println();
+			System.out.println("입력하신 계좌가 없습니다 출금이 취소되었습니다");
 	}
 
 
